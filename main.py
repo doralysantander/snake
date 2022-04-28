@@ -1,6 +1,7 @@
 from turtle import Screen
 from snake import Snake
 from food import Food
+from scoreboard import Scoreboard
 
 import time 
 
@@ -19,6 +20,8 @@ snake = Snake()
 
 #crear instancia Eel objeto comida
 food= Food()
+#CREAR OBJETO TABLERO PUNTOS
+scoreboard= Scoreboard()
 
 #movimientos serpiente
 screen.listen()
@@ -34,7 +37,11 @@ while game_is_on:
     screen.update()
     #aumentar velocidad
     time.sleep(0.2)
-    snake.move()    
+    snake.move()  
+
+    #detectar colision con comida 
+    if snake.head.distance(food) < 15:
+        food.refresh()     
 
 #final
 screen.exitonclick()
