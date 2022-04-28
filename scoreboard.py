@@ -1,4 +1,6 @@
 from turtle import Turtle
+ALIGN = "center"
+FONT= ("Arial",24,"normal")
 
 class Scoreboard(Turtle):
 
@@ -13,7 +15,7 @@ class Scoreboard(Turtle):
 
     def update_score(self):
 
-        self.write(f"El puntaje es: {self.score}",font=("Arial",24,"normal"), align="center")   
+        self.write(f"El puntaje es: {self.score}",font=FONT, align=ALIGN)   
 
 #funcion sume
     def increase_score(self):
@@ -21,3 +23,8 @@ class Scoreboard(Turtle):
         self.clear()
         self.score += 1 
         self.update_score()
+
+    #termino juego
+    def game_over(self):
+        self.goto(0,0)
+        self.write("Juego terminado:",font=FONT, align=ALIGN)     

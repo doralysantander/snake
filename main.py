@@ -20,6 +20,7 @@ snake = Snake()
 
 #crear instancia Eel objeto comida
 food= Food()
+
 #CREAR OBJETO TABLERO PUNTOS
 scoreboard= Scoreboard()
 
@@ -42,7 +43,22 @@ while game_is_on:
     #detectar colision con comida 
     if snake.head.distance(food) < 15:
         food.refresh() 
-        scoreboard.increase_score()    
+        scoreboard.increase_score()
+        snake.extend()  
+
+    #DETECTAR LAS PAREDES 
+    if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
+        game_is_on = False 
+        scoreboard.game_over()   
+
+    #detectar colision cola   
+    for segment in snake.segments:
+        if segment == snake.head:
+            pass
+        elif snake.head.distance(segment) < 10:
+            game_is_on = False 
+            scoreboard.game_over()   
+
 
 #final
 screen.exitonclick()
